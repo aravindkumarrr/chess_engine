@@ -13,6 +13,11 @@ add_executable(ChessEngine
     src/engine/Board.cpp
     src/engine/pieces/Pawn.cpp
     src/gui/Renderer.cpp
+    src/engine/pieces/Rook.cpp
+    src/engine/pieces/Knight.cpp
+    src/engine/pieces/Bishop.cpp
+    src/engine/pieces/Queen.cpp
+    src/engine/pieces/King.cpp
 )
 
 # --- So we can write #include "engine/Board.h" from anywhere ---
