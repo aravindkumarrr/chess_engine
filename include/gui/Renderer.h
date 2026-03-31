@@ -6,12 +6,18 @@
 #include <optional>
 #include "engine/Types.h"
 
+enum class AppState {
+    START_SCREEN,
+    USER_VS_USER,
+    USER_VS_ENGINE
+};
+
 class Board;
 
 class Renderer {
 public:
     Renderer();
-
+    AppState drawStartScreen();
     bool initialize();
     bool isWindowOpen() const;
 

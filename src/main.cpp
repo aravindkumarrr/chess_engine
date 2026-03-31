@@ -10,6 +10,13 @@ int main() {
     renderer.initialize();
     InputHandler input;
 
+    AppState mode = renderer.drawStartScreen();
+    if (!renderer.isWindowOpen()) return 0;
+    if (mode == AppState::USER_VS_ENGINE) {
+        // hand off to your partner's code here
+        return 0;
+    }
+
     sf::RenderWindow& window = renderer.getWindow();
 
     while (window.isOpen()) {
