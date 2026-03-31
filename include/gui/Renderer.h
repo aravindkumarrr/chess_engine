@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <map>
 #include <string>
+#include <optional>
 #include "engine/Types.h"
 
 class Board;
@@ -17,8 +18,11 @@ public:
     void handleEvents();
     void drawBoard();
     void drawPieces(const Board& board);
+    void highlightSquare(std::optional<Coords> square); // NEW
     void display();
     void clear();
+
+    sf::RenderWindow& getWindow() { return m_window; } // NEW
 
 private:
     sf::RenderWindow m_window;
@@ -26,7 +30,6 @@ private:
     bool m_boardTextureLoaded;
     sf::Texture m_boardTexture;
 
-    // Store textures only — sprites created on the fly in SFML 3
     std::map<std::string, sf::Texture> m_pieceTextures;
 
     void loadTextures();

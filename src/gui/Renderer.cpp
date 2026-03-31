@@ -74,8 +74,11 @@ void Renderer::drawPieces(const Board& board) {
 }
 
 void Renderer::loadTextures() {
+
     if (m_boardTexture.loadFromFile("assets/board.png"))
         m_boardTextureLoaded = true;
+    else
+        printf("FAILED to load board texture\n");
 
     std::vector<std::pair<Color, std::string>> colors = {
         { Color::WHITE, "w" },
@@ -100,6 +103,16 @@ void Renderer::loadTextures() {
                 m_pieceTextures[key] = std::move(texture);
         }
     }
+}
+void Renderer::highlightSquare(std::optional<Coords> square) {
+    if (!square) return; // nothing selected, draw nothing
+
+    sf::RectangleShape highlight(sf::Vector2f(TILE_SIZE, TILE_SIZE));
+    highlight.setFillColor(sf::Color(0, 255, 0, 100)); // semi-transparent green
+    highlight.setPosition(
+        sf::Vector2f(square->x * TILE_SIZE, square->y * TILE_SIZE)
+    );
+    m_window.draw(highlight);
 }
 
 std::string Renderer::makeKey(Color color, PieceType type) const {

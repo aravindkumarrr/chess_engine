@@ -7,6 +7,12 @@
 #include "engine/pieces/Queen.h"
 #include "engine/pieces/King.h"
 
+
+// In Board.cpp:
+Piece* Board::getPieceAt(const Coords& c) const {
+    return m_grid[c.y][c.x].get(); // .get() gives raw ptr from unique_ptr
+}
+
 Board::Board() {
     m_currentTurn = Color::WHITE;
     resetBoard();
