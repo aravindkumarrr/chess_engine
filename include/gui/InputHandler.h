@@ -1,28 +1,23 @@
 #pragma once
-
+#include "engine/Board.h"
 #include "engine/Types.h"
+#include <SFML/Graphics.hpp>
 #include <optional>
-
-class Board;
 
 class InputHandler {
 public:
-    InputHandler();
+    // Call this every time a MouseButtonPressed event fires
+    void handleClick(const sf::Vector2i& pixelPos, Board& board);
 
-    // Call this when a mouse click occurs
-    void handleClick(int pixelX, int pixelY, Board& board);
-
-    // Returns selected square if one is active
-    bool hasSelection() const;
-    Coords getSelection() const;
-
-    void clearSelection();
+    // Returns the currently selected square (for Renderer to highlight it)
+    std::optional<Coords> getSelectedSquare() const;
 
 private:
-    std::optional<Coords> m_selectedSquare;
+    std::optional<Coords> m_selected; // nullopt = nothing selected
 
-    // Converts pixel position to board coordinate
-    Coords pixelToBoard(int pixelX, int pixelY) const;
+    // Converts pixel (x, y) → board Coords (col, row)
+    // Returns nullopt if click is outside the board
+    std::optional<Coords> pixelToCoords(const sf::Vector2i& pixelPos) const;
 
-    static const int TILE_SIZE = 100;
+    static constexpr int TILE_SIZE = 100; // 800px window / 8 tiles
 };
