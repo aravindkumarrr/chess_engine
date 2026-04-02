@@ -11,7 +11,6 @@ This project uses **CMake** as the build system and **SFML 3.0** for graphics.
 
 **Important:** The engine requires the `assets/` directory to be in the same folder as the final executable to load textures and fonts properly.
 
-**For Linux / macOS:**
 ```bash
 cd chess_engine
 mkdir build
